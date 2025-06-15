@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+
+@let jobs = jobs$ | async;
+
+@if (jobs) {
+    <app-job-list 
+        [jobs]="jobs" 
+        (addFavoriteJob)="addToFavoriteJobs($event)"
+        (removeFavoriteJob)="removeFromFavoriteJobs($event)" 
+    />
+}

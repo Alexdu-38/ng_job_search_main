@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<button type="button" (click)="goBack()">Back</button>
+
+@let job = jobDetail();
+
+@if (job) {
+    <div class="title">
+        <img [ngSrc]="job.companyLogo" alt="{{job.companyLogo}}" width="85" height="85">
+        
+        <div class="title-content">
+            <h2><strong>{{job.companyName}} - {{job.title}}</strong></h2>
+
+            <div class="title-detail">
+                <p>{{job.types}}</p>
+                <p [innerHTML]="job.industries"></p>
+            </div>
+        </div>
+    </div>
+    <p><strong>Publish date:</strong> {{job.publishDate | date:'shortDate'}} </p>
+    <p><strong>Location:</strong> {{job.location}}</p>
+    <p><strong>Reference:</strong> {{job.reference}}</p>
+    <p><strong>Description:</strong> <br>
+    <p [innerHTML]="job.description"></p>
+}

@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+
+@if (favJobs.length > 0) {
+    <app-job-list [jobs]="favJobs" />
+} @else {
+    <p class="no-favorite"><strong>No favorite selected</strong></p>
+}

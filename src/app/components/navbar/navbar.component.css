@@ -1,0 +1,19 @@
+.navbar {
+    list-style: none;
+    border-style: none;
+}
+
+.navbar-link {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    cursor: pointer;
+}
+
+.active {
+    background-color: rgb(78, 76, 76);
+    color: white;
+}

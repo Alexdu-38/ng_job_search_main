@@ -38,6 +38,8 @@
     "typescript": "~5.5.4"
   },
   "msw": {
-    "workerDirectory": "src"
+    "workerDirectory": [
+      "src"
+    ]
   }
 }

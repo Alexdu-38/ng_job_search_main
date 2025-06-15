@@ -1,0 +1,8 @@
+.title {
+    display: flex;
+    justify-content: center
+}
+
+.main {
+    padding: 15px 250px;
+}

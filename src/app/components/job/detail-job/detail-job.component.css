@@ -1,0 +1,27 @@
+.title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-detail {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.title-detail p {
+    color: white;
+    background-color: steelblue;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    border-top-left-radius: 50px 50px;
+    border-top-right-radius: 50px 50px;
+    border-bottom-left-radius: 50px 50px;
+    border-bottom-right-radius: 50px 50px;
+}
