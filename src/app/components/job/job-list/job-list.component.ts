@@ -14,9 +14,23 @@ import { RouterLink } from '@angular/router';
 export class JobListComponent {
 
   private readonly _jobService = inject(JobService);
-  private favJobsIds = signal<number[]>(this._jobService.favoriteJobs().map(job => job.id));
 
   public jobs = input.required<Job[]>();
+  public favJobsIds = input<number[]>([]);
   public addFavoriteJob = output<Job>();
   public removeFavoriteJob = output<number>();
+
+  /**
+   * Check if a job is in the favorite jobs list
+   * TODO: Check if I can pass the id job rather then the job itself
+   * @param job Job to check if in the favorite jobs list
+   * @returns true if the job is in the favorite jobs list, false otherwise
+   */
+  protected isFavorite(job: Job) {
+    return this.favJobsIds().includes(job.id);
+  }
+
+  protected toggleFavorite(job: Job) {
+    // TODO: To implement
+  }
 }

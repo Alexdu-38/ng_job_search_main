@@ -10,6 +10,6 @@
                 <p class="detail-content">Reference: {{job.reference}}</p>
             </div>
         </div>
-        <button type="button" class="icon-star">Etoile</button>
+       <button class="button-star"><span id="star-{{job.id}}" class="icon-star" (click)="toggleFavorite(job)"></span></button>
     </div>
 }
