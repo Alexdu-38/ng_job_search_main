@@ -53,6 +53,6 @@ export class JobService {
    * @param jobId Id of the job to remove
    */
   public removeFromFavoriteJobs(jobId: number): void {
-    this._favoriteJobs().filter(favJobs => favJobs.id !== jobId);
+    this._favoriteJobs.update(favJobs => favJobs.filter(job => job.id !== jobId));
   }
 }

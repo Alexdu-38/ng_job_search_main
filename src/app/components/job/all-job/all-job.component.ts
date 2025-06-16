@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { JobService } from '../../../services/job/job.service';
 import { Job } from '../../../services/model';
 import { NavbarComponent } from '../../navbar/navbar.component';
@@ -7,14 +7,23 @@ import { JobListComponent } from '../job-list/job-list.component';
 
 @Component({
   selector: 'app-all-job',
-  imports: [NavbarComponent, JobListComponent, AsyncPipe],
+  imports: [NavbarComponent, JobListComponent],
   templateUrl: './all-job.component.html',
   styleUrl: './all-job.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AllJobComponent {
+
   private readonly _jobService = inject(JobService);
-  protected jobs$ = this._jobService.getJobs();
+  protected jobs = computed(() => this._jobService.jobs());
+  // TODO Check the consistency of this variable : favJobsIds
+  protected favJobsIds = computed(() => this._jobService.favoriteJobs().map(favJob => favJob.id));
+
+  constructor() {
+    if (this.jobs().length === 0) {
+      this._jobService.getJobs().subscribe();
+    }
+  }
 
   /**
    * Add the specific job to the favorite list

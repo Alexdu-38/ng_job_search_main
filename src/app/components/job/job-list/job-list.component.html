@@ -1,15 +1,25 @@
 @for (job of jobs(); track job.id) {
-    <div class="job">
-        <img [ngSrc]="job.companyLogo" alt="{{job.companyLogo}}" width="50" height="50">
-        <div class="job-content">
-            <h3>
-                <a class="job-link" [routerLink]="['/jobs', job.id]"><strong>{{job.title}}</strong></a>
-            </h3>
-            <div class="job-detail">
-                <p class="detail-content">Company: {{job.companyName}}</p>
-                <p class="detail-content">Reference: {{job.reference}}</p>
-            </div>
+<div class="job">
+    <img [ngSrc]="job.companyLogo" alt="{{job.companyLogo}}" width="50" height="50">
+    <div class="job-content">
+        <h3>
+            <a class="job-link" [routerLink]="['/jobs', job.id]"><strong>{{job.title}}</strong></a>
+        </h3>
+        <div class="job-detail">
+            <p class="detail-content">Company: {{job.companyName}}</p>
+            <p class="detail-content">Reference: {{job.reference}}</p>
         </div>
-       <button class="button-star"><span id="star-{{job.id}}" class="icon-star" (click)="toggleFavorite(job)"></span></button>
     </div>
+
+    @if (displayStars()) {
+        <span
+            id="star-{{job.id}}"
+            class="icon-star"
+            (click)="toggleFavorite(job)"
+            appStarHover
+            [jobId]="job.id"
+            [favoriteJobsIds]="favJobsIds()">
+        </span>
+    }
+</div>
 }
