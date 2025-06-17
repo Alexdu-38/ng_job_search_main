@@ -1,43 +1,44 @@
 import { Directive, effect, ElementRef, HostListener, inject, input, Renderer2, signal } from '@angular/core';
 
-// TODO: Check if I can use the new host with the new Angular Version
+const ACTIVE_CLASS = 'active';
+
 @Directive({
   selector: '[appStarHover]'
 })
 export class StarHoverDirective {
 
   public readonly jobId = input.required<number>();
-  public readonly favoriteJobsIds = input.required<number[]>();
+  public readonly favJobsIds = input.required<number[]>();
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
 
-  private isSelected = signal(false);
+  private isSelected = false;
 
   constructor() {
     effect(() => {
-      this.isSelected.set(this.favoriteJobsIds().includes(this.jobId()));
+      this.isSelected = this.favJobsIds().includes(this.jobId());
       this.updateStarClass();
     });
   }
 
   @HostListener('mouseenter')
   onMouseEnter() {
-    if (!this.isSelected()) {
-      this.renderer.addClass(this.el.nativeElement, 'activate');
+    if (!this.isSelected) {
+      this.renderer.addClass(this.el.nativeElement, ACTIVE_CLASS);
     }
   }
 
   @HostListener('mouseleave')
   onMouseLeave() {
-    if (!this.isSelected()) {
-      this.renderer.removeClass(this.el.nativeElement, 'activate')
+    if (!this.isSelected) {
+      this.renderer.removeClass(this.el.nativeElement, ACTIVE_CLASS)
     }
   }
 
   @HostListener('click')
   onClick() {
-    this.isSelected.set(!this.isSelected());
+    this.isSelected = !this.isSelected;
     this.updateStarClass();
   }
 
@@ -45,10 +46,10 @@ export class StarHoverDirective {
    * Update the activate class according to the selected signal value
    */
   private updateStarClass() {
-    if (this.isSelected()) {
-      this.renderer.addClass(this.el.nativeElement, 'activate');
+    if (this.isSelected) {
+      this.renderer.addClass(this.el.nativeElement, ACTIVE_CLASS);
     } else {
-      this.renderer.removeClass(this.el.nativeElement, 'activate');
+      this.renderer.removeClass(this.el.nativeElement, ACTIVE_CLASS);
     }
   }
 }

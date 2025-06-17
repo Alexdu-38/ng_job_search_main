@@ -6,14 +6,29 @@
 .navbar-link {
     list-style: none;
     display: flex;
-    justify-content: center;
+}
+
+.navbar a {
+    width: 100%;
+    color: black;
 }
 
 .navbar li {
+    width: 100%;
+    text-align: center;
     cursor: pointer;
 }
 
+.navbar a.active {
+    color: white;
+}
+
 .active {
+    background-color: rgb(78, 76, 76);
+    color: white;
+}
+
+.active:hover {
     background-color: rgb(78, 76, 76);
     color: white;
 }

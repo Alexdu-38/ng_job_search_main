@@ -4,23 +4,20 @@ import { FavoriteJobComponent } from './components/job/favorite-job/favorite-job
 import { DetailJobComponent } from './components/job/detail-job/detail-job.component';
 
 export const routes: Routes = [
-
     {
         path: 'jobs',
         title: 'Jobs',
         component: AllJobComponent
     },
-    // TODO: Need to use LazyLoading
     {
         path: 'jobs/:id',
         title: 'Job\'s detail',
-        component: DetailJobComponent
+        loadComponent: () => import('./components/job/detail-job/detail-job.component').then(c => c.DetailJobComponent)
     },
-    // TODO: Need to use LazyLoading
     {
         path: 'favorites',
         title: 'Favorites jobs',
-        component: FavoriteJobComponent
+        loadComponent: () => import('./components/job/favorite-job/favorite-job.component').then(c => c.FavoriteJobComponent)
     },
     {
         path: '',

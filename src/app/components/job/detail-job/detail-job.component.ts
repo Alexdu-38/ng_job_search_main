@@ -20,7 +20,6 @@ export class DetailJobComponent implements OnInit {
 
   protected jobDetail: WritableSignal<JobDetail | null> = signal(null);
 
-  // TODO: Add house icon in the back button
   ngOnInit(): void {
     this._jobService.getJobDetail(this.id()).subscribe(job => {
       this.jobDetail.set(job);

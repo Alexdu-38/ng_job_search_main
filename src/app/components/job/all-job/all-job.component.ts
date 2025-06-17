@@ -15,8 +15,8 @@ import { JobListComponent } from '../job-list/job-list.component';
 export class AllJobComponent {
 
   private readonly _jobService = inject(JobService);
+
   protected jobs = computed(() => this._jobService.jobs());
-  // TODO Check the consistency of this variable : favJobsIds
   protected favJobsIds = computed(() => this._jobService.favoriteJobs().map(favJob => favJob.id));
 
   constructor() {

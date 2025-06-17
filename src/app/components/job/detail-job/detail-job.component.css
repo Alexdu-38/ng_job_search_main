@@ -12,7 +12,7 @@
 
 .title-detail {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .title-detail p {
@@ -24,4 +24,8 @@
     border-top-right-radius: 50px 50px;
     border-bottom-left-radius: 50px 50px;
     border-bottom-right-radius: 50px 50px;
+}
+
+.back {
+    margin-left: 0;
 }
