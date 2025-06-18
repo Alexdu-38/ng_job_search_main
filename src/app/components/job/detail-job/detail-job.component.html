@@ -6,7 +6,7 @@
 
 @if (job) {
     <div class="title">
-        <img [ngSrc]="job.companyLogo" alt="{{job.companyName}}" width="85" height="85">
+        <img [ngSrc]="sanitizer.bypassSecurityTrustResourceUrl(job.companyLogo)" alt="{{job.companyName}}" width="85" height="85">
         
         <div class="title-content">
             <h2><strong>{{job.companyName}} - {{job.title}}</strong></h2>

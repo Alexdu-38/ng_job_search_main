@@ -4,6 +4,7 @@ import { JobDetail } from '../../../services/model';
 import { DatePipe, Location, NgOptimizedImage } from '@angular/common';
 import { NavbarComponent } from "../../navbar/navbar.component";
 import { RouterLink } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-job',
@@ -16,9 +17,10 @@ export class DetailJobComponent implements OnInit {
 
   public id = input.required<number>()
 
-  private readonly _jobService = inject(JobService);
-
   protected jobDetail: WritableSignal<JobDetail | null> = signal(null);
+
+  protected readonly sanitizer = inject(DomSanitizer);
+  private readonly _jobService = inject(JobService);
 
   ngOnInit(): void {
     this._jobService.getJobDetail(this.id()).subscribe(job => {

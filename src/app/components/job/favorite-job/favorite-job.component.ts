@@ -13,5 +13,5 @@ import { NavbarComponent } from "../../navbar/navbar.component";
 })
 export class FavoriteJobComponent {
   private readonly _jobService = inject(JobService);
-  protected favJobs: Job[] = this._jobService.favoriteJobs();
+  protected favJobs: Job[] = this._jobService.favoritesJobs();
 }

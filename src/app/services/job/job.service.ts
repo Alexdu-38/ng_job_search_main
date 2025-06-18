@@ -3,6 +3,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Job, JobDetail } from '../model';
 
+const FAVORITES_JOBS_STORAGE = 'favJobs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,9 +13,9 @@ export class JobService {
   private _jobs = signal<Job[]>([]);
   public jobs = this._jobs.asReadonly();
 
-  private favJobsStorage = localStorage.getItem('favJobs');
-  private _favoriteJobs = signal<Job[]>(this.favJobsStorage !== null ? JSON.parse(this.favJobsStorage) : []);
-  public favoriteJobs = this._favoriteJobs.asReadonly();
+  private favJobsStorage = localStorage.getItem(FAVORITES_JOBS_STORAGE);
+  private _favoritesJobs = signal<Job[]>(this.favJobsStorage !== null ? JSON.parse(this.favJobsStorage) : []);
+  public favoritesJobs = this._favoritesJobs.asReadonly();
 
   private http = inject(HttpClient);
 
@@ -45,8 +47,8 @@ export class JobService {
    * @param job Job to add
    */
   public addToFavoriteJobs(job: Job): void {
-    this._favoriteJobs.update(favJobs => [...favJobs, job]);
-    localStorage.setItem('favJobs', JSON.stringify(this._favoriteJobs()));
+    this._favoritesJobs.update(favJobs => [...favJobs, job]);
+    localStorage.setItem(FAVORITES_JOBS_STORAGE, JSON.stringify(this._favoritesJobs()));
   }
 
   /**
@@ -55,7 +57,7 @@ export class JobService {
    * @param jobId Id of the job to remove
    */
   public removeFromFavoriteJobs(jobId: number): void {
-    this._favoriteJobs.update(favJobs => favJobs.filter(job => job.id !== jobId));
-    localStorage.setItem('favJobs', JSON.stringify(this._favoriteJobs()));
+    this._favoritesJobs.update(favJobs => favJobs.filter(job => job.id !== jobId));
+    localStorage.setItem(FAVORITES_JOBS_STORAGE, JSON.stringify(this._favoritesJobs()));
   }
 }

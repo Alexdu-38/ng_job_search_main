@@ -17,7 +17,7 @@ export class AllJobComponent {
   private readonly _jobService = inject(JobService);
 
   protected jobs = computed(() => this._jobService.jobs());
-  protected favJobsIds = computed(() => this._jobService.favoriteJobs().map(favJob => favJob.id));
+  protected favJobsIds = computed(() => this._jobService.favoritesJobs().map(favJob => favJob.id));
 
   constructor() {
     if (this.jobs().length === 0) {

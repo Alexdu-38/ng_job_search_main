@@ -4,6 +4,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { JobService } from '../../../services/job/job.service';
 import { RouterLink } from '@angular/router';
 import { StarHoverDirective } from '../../../directives/star-hover.directive';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-job-list',
@@ -20,7 +21,9 @@ export class JobListComponent {
   public addFavoriteJob = output<Job>();
   public removeFavoriteJob = output<number>();
 
-  protected toggleFavorite(job: Job) {
+  protected readonly sanitizer = inject(DomSanitizer);
+
+  protected toggleFavorite(job: Job): void {
     this.favJobsIds().includes(job.id) ? this.removeFavoriteJob.emit(job.id) : this.addFavoriteJob.emit(job);
   }
 }

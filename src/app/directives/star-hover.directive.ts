@@ -23,27 +23,27 @@ export class StarHoverDirective {
   }
 
   @HostListener('mouseenter')
-  onMouseEnter() {
+  public onMouseEnter(): void {
     if (!this.isSelected) {
       this.renderer.addClass(this.el.nativeElement, ACTIVE_CLASS);
     }
   }
 
   @HostListener('mouseleave')
-  onMouseLeave() {
+  public onMouseLeave(): void {
     if (!this.isSelected) {
       this.renderer.removeClass(this.el.nativeElement, ACTIVE_CLASS)
     }
   }
 
   @HostListener('click')
-  onClick() {
+  public onClick(): void {
     this.isSelected = !this.isSelected;
     this.updateStarClass();
   }
 
   /**
-   * Update the activate class according to the selected signal value
+   * Update the activate class according to the selected value
    */
   private updateStarClass() {
     if (this.isSelected) {
