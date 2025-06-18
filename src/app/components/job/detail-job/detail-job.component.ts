@@ -1,6 +1,5 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal, WritableSignal } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { JobService } from '../../../services/job/job.service';
 import { JobDetail } from '../../../services/model';
@@ -19,7 +18,6 @@ export class DetailJobComponent implements OnInit {
 
   protected jobDetail: WritableSignal<JobDetail | null> = signal(null);
 
-  protected readonly sanitizer = inject(DomSanitizer);
   private readonly _jobService = inject(JobService);
 
   ngOnInit(): void {

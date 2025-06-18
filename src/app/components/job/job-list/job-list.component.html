@@ -1,6 +1,6 @@
 @for (job of jobs(); track job.id) {
 <div class="job">
-    <img [ngSrc]="sanitizer.bypassSecurityTrustResourceUrl(job.companyLogo)" alt="{{job.companyName}}" width="50" height="50">
+    <img [ngSrc]="job.companyLogo" alt="{{job.companyName}}" width="50" height="50">
     <div class="job-content">
         <h3>
             <a class="job-link" [routerLink]="['/jobs', job.id]"><strong>{{job.title}}</strong></a>
