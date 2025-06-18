@@ -14,6 +14,7 @@ describe('JobListComponent', () => {
 
     fixture = TestBed.createComponent(JobListComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('jobs', []);
     fixture.detectChanges();
   });
 
