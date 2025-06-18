@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { setupWorker } from 'msw/browser';
 import { AppComponent } from './app/app.component';
-import {setupWorker} from 'msw/browser';
+import { appConfig } from './app/app.config';
 import { mockHandlers } from './mocks';
 
 setupWorker(...mockHandlers).start()

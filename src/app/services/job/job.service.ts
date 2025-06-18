@@ -37,8 +37,8 @@ export class JobService {
    * @param id Id of the job to retrieve
    * @returns A detailled job
    */
-  public getJobDetail(id: number): Observable<JobDetail> {
-    return this.http.get<JobDetail>(`/jobs/${id}`);
+  public getJobDetail(jobId: number): Observable<JobDetail> {
+    return this.http.get<JobDetail>(`/jobs/${jobId}`);
   }
 
   /**

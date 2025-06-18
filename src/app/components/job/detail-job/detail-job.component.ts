@@ -1,10 +1,10 @@
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal, WritableSignal } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import { JobService } from '../../../services/job/job.service';
 import { JobDetail } from '../../../services/model';
-import { DatePipe, Location, NgOptimizedImage } from '@angular/common';
 import { NavbarComponent } from "../../navbar/navbar.component";
-import { RouterLink } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-job',
@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class DetailJobComponent implements OnInit {
 
-  public id = input.required<number>()
+  public jobId = input.required<number>()
 
   protected jobDetail: WritableSignal<JobDetail | null> = signal(null);
 
@@ -23,7 +23,7 @@ export class DetailJobComponent implements OnInit {
   private readonly _jobService = inject(JobService);
 
   ngOnInit(): void {
-    this._jobService.getJobDetail(this.id()).subscribe(job => {
+    this._jobService.getJobDetail(this.jobId()).subscribe(job => {
       this.jobDetail.set(job);
     })
   }

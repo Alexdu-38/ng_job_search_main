@@ -1,10 +1,9 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, input, output, signal, Signal } from '@angular/core';
-import { Job } from '../../../services/model';
 import { NgOptimizedImage } from '@angular/common';
-import { JobService } from '../../../services/job/job.service';
+import { booleanAttribute, ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { StarHoverDirective } from '../../../directives/star-hover.directive';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Job } from '../../../services/model';
 
 @Component({
   selector: 'app-job-list',
@@ -15,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class JobListComponent {
 
-  public displayStars = input(false, {transform: booleanAttribute});
+  public displayStars = input(false, { transform: booleanAttribute });
   public jobs = input.required<Job[]>();
   public favJobsIds = input<number[]>([]);
   public addFavoriteJob = output<Job>();

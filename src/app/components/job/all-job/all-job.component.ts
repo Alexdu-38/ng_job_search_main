@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { JobService } from '../../../services/job/job.service';
 import { Job } from '../../../services/model';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { JobListComponent } from '../job-list/job-list.component';
 
 @Component({
@@ -20,7 +19,7 @@ export class AllJobComponent {
   protected favJobsIds = computed(() => this._jobService.favoritesJobs().map(favJob => favJob.id));
 
   constructor() {
-    if (this.jobs().length === 0) {
+    if (this._jobService.jobs().length === 0) {
       this._jobService.getJobs().subscribe();
     }
   }

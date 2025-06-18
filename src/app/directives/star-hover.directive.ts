@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef, HostListener, inject, input, Renderer2, signal } from '@angular/core';
+import { Directive, effect, ElementRef, HostListener, inject, input, Renderer2 } from '@angular/core';
 
 const ACTIVE_CLASS = 'active';
 
