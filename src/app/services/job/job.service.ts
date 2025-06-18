@@ -11,7 +11,8 @@ export class JobService {
   private _jobs = signal<Job[]>([]);
   public jobs = this._jobs.asReadonly();
 
-  private _favoriteJobs = signal<Job[]>([]);
+  private favJobsStorage = localStorage.getItem('favJobs');
+  private _favoriteJobs = signal<Job[]>(this.favJobsStorage !== null ? JSON.parse(this.favJobsStorage) : []);
   public favoriteJobs = this._favoriteJobs.asReadonly();
 
   private http = inject(HttpClient);
@@ -39,20 +40,22 @@ export class JobService {
   }
 
   /**
-   * Add a specific job to the favorite list
+   * Add a specific job to the favorite list and uodate the local storage
    * 
    * @param job Job to add
    */
   public addToFavoriteJobs(job: Job): void {
     this._favoriteJobs.update(favJobs => [...favJobs, job]);
+    localStorage.setItem('favJobs', JSON.stringify(this._favoriteJobs()));
   }
 
   /**
-   * Remove a specific job to the favorite list
+   * Remove a specific job to the favorite list and uodate the local storage
    * 
    * @param jobId Id of the job to remove
    */
   public removeFromFavoriteJobs(jobId: number): void {
     this._favoriteJobs.update(favJobs => favJobs.filter(job => job.id !== jobId));
+    localStorage.setItem('favJobs', JSON.stringify(this._favoriteJobs()));
   }
 }
